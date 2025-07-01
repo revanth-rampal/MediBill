@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Billing - Inventory</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>MedBill Pro</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="billing.html" class="nav-link">
+                    <span class="nav-icon">💊</span>
+                    Billing
+                </a></li>
+                <li><a href="customers.html" class="nav-link">
+                    <span class="nav-icon">👥</span>
+                    Customers
+                </a></li>
+                <li><a href="stock.html" class="nav-link active">
+                    <span class="nav-icon">📦</span>
+                    Inventory
+                </a></li>
+                <li><a href="reports.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    Reports
+                </a></li>
+                <li><a href="settings.html" class="nav-link">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <h1>Inventory Management</h1>
+                <button class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Filters and Add Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="filters-container">
+                            <select id="companyFilter" class="form-select">
+                                <option value="">All Companies</option>
+                            </select>
+                            <select id="categoryFilter" class="form-select">
+                                <option value="">All Categories</option>
+                            </select>
+                            <select id="expiryFilter" class="form-select">
+                                <option value="">All Items</option>
+                                <option value="expired">Expired</option>
+                                <option value="expiring">Expiring Soon</option>
+                            </select>
+                            <input type="text" id="stockSearch" placeholder="Search medicines..." class="search-input">
+                        </div>
+                        <button id="addMedicineBtn" class="btn btn-primary">Add Medicine</button>
+                    </div>
+                </div>
+
+                <!-- Stock Table -->
+                <div class="section-card">
+                    <div class="table-container">
+                        <table id="stockTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th>Batch No.</th>
+                                    <th>Expiry Date</th>
+                                    <th>Stock Qty</th>
+                                    <th>Unit</th>
+                                    <th>MRP</th>
+                                    <th>Company</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="stockTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Medicine Modal -->
+    <div id="medicineFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Add Medicine</h3>
+            <form id="medicineForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medicineName">Medicine Name *</label>
+                        <input type="text" id="medicineName" name="name" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineCode">Medicine Code</label>
+                        <input type="text" id="medicineCode" name="code" class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="batchNo">Batch Number *</label>
+                        <input type="text" id="batchNo" name="batch" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date *</label>
+                        <input type="date" id="expiryDate" name="expiry" required class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stockQty">Stock Quantity *</label>
+                        <input type="number" id="stockQty" name="stock" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="unit">Unit *</label>
+                        <select id="unit" name="unit" required class="form-select">
+                            <option value="tablet">Tablet</option>
+                            <option value="strip">Strip</option>
+                            <option value="box">Box</option>
+                            <option value="bottle">Bottle</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mrp">MRP *</label>
+                        <input type="number" id="mrp" name="mrp" step="0.01" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="costPrice">Cost Price</label>
+                        <input type="number" id="costPrice" name="cost" step="0.01" class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required class="form-select">
+                            <option value="tablet">Tablet</option>
+                            <option value="syrup">Syrup</option>
+                            <option value="injection">Injection</option>
+                            <option value="ointment">Ointment</option>
+                            <option value="drops">Drops</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" class="form-textarea"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Medicine</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/stock.js"></script>
+</body>
+</html>

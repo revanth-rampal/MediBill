@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Billing - Reports</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>MedBill Pro</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="billing.html" class="nav-link">
+                    <span class="nav-icon">💊</span>
+                    Billing
+                </a></li>
+                <li><a href="customers.html" class="nav-link">
+                    <span class="nav-icon">👥</span>
+                    Customers
+                </a></li>
+                <li><a href="stock.html" class="nav-link">
+                    <span class="nav-icon">📦</span>
+                    Inventory
+                </a></li>
+                <li><a href="reports.html" class="nav-link active">
+                    <span class="nav-icon">📊</span>
+                    Reports
+                </a></li>
+                <li><a href="settings.html" class="nav-link">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <h1>Billing History & Reports</h1>
+                <button class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Filters Section -->
+                <div class="section-card">
+                    <h3>Filters</h3>
+                    <div class="filters-container">
+                        <div class="form-group">
+                            <label for="dateFrom">From Date</label>
+                            <input type="date" id="dateFrom" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="dateTo">To Date</label>
+                            <input type="date" id="dateTo" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerFilter">Customer</label>
+                            <select id="customerFilter" class="form-select">
+                                <option value="">All Customers</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentFilter">Payment Method</label>
+                            <select id="paymentFilter" class="form-select">
+                                <option value="">All Methods</option>
+                                <option value="cash">Cash</option>
+                                <option value="upi">UPI</option>
+                                <option value="card">Card</option>
+                            </select>
+                        </div>
+                        <button id="applyFiltersBtn" class="btn btn-primary">Apply Filters</button>
+                        <button id="clearFiltersBtn" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h4>Total Sales</h4>
+                        <div class="summary-value" id="totalSales">₹0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Total Bills</h4>
+                        <div class="summary-value" id="totalBills">0</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Average Bill</h4>
+                        <div class="summary-value" id="averageBill">₹0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Total Discount</h4>
+                        <div class="summary-value" id="totalDiscount">₹0.00</div>
+                    </div>
+                </div>
+
+                <!-- Bills Table -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <h3>Billing History</h3>
+                        <div class="export-buttons">
+                            <button id="exportExcelBtn" class="btn btn-success">Export Excel</button>
+                            <button id="exportPdfBtn" class="btn btn-danger">Export PDF</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="reportsTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Bill No.</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Customer</th>
+                                    <th>Phone</th>
+                                    <th>Items</th>
+                                    <th>Subtotal</th>
+                                    <th>Discount</th>
+                                    <th>GST</th>
+                                    <th>Total</th>
+                                    <th>Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportsTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bill Details Modal -->
+    <div id="billDetailsModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h3>Bill Details</h3>
+            <div id="billDetailsContent">
+                <!-- Bill details will be loaded here -->
+            </div>
+            <div class="modal-actions">
+                <button id="printBillBtn" class="btn btn-primary">Print Bill</button>
+                <button id="emailBillBtn" class="btn btn-secondary">Email Bill</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/reports.js"></script>
+</body>
+</html>

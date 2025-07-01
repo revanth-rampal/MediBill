@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Billing - Billing</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>MedBill Pro</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="billing.html" class="nav-link active">
+                    <span class="nav-icon">💊</span>
+                    Billing
+                </a></li>
+                <li><a href="customers.html" class="nav-link">
+                    <span class="nav-icon">👥</span>
+                    Customers
+                </a></li>
+                <li><a href="stock.html" class="nav-link">
+                    <span class="nav-icon">📦</span>
+                    Inventory
+                </a></li>
+                <li><a href="reports.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    Reports
+                </a></li>
+                <li><a href="settings.html" class="nav-link">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <h1>Billing Screen</h1>
+                <button class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Customer Search Section -->
+                <div class="section-card">
+                    <h3>Customer Search</h3>
+                    <div class="search-container">
+                        <input type="text" id="customerMobile" placeholder="Enter customer mobile number" class="search-input">
+                        <button id="searchCustomerBtn" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+
+                <!-- Medicine Entry Section -->
+                <div class="section-card">
+                    <h3>Medicine Entry</h3>
+                    <div class="medicine-form">
+                        <div class="form-row">
+                            <input type="text" id="medicineName" placeholder="Medicine Name/Code" class="form-input">
+                            <input type="number" id="quantity" placeholder="Quantity" class="form-input">
+                            <select id="unit" class="form-select">
+                                <option value="tablet">Tablet</option>
+                                <option value="strip">Strip</option>
+                                <option value="box">Box</option>
+                            </select>
+                            <input type="number" id="mrp" placeholder="MRP" step="0.01" class="form-input">
+                            <button id="addMedicineBtn" class="btn btn-success">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Medicine Table -->
+                    <div class="table-container">
+                        <table id="medicineTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Unit</th>
+                                    <th>MRP</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="medicineTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Billing Summary Section -->
+                <div class="section-card">
+                    <h3>Billing Summary</h3>
+                    <div class="billing-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <label>
+                                <input type="checkbox" id="gstToggle"> Include GST (18%)
+                            </label>
+                            <span id="gstAmount">₹0.00</span>
+                        </div>
+                        <div class="summary-row" id="loyaltyRow" style="display: none;">
+                            <label>
+                                <input type="checkbox" id="loyaltyDiscount"> Loyalty Discount
+                            </label>
+                            <span id="discountAmount">₹0.00</span>
+                        </div>
+                        <div class="summary-row total-row">
+                            <span>Total:</span>
+                            <span id="totalAmount">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="generateQRBtn" class="btn btn-primary">Generate UPI QR</button>
+                        <button id="printBillBtn" class="btn btn-secondary">Print Bill</button>
+                        <button id="submitBillBtn" class="btn btn-success">Submit Bill</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Info Modal -->
+    <div id="customerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Customer Information</h3>
+            <div id="customerInfo">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- UPI QR Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>UPI Payment QR Code</h3>
+            <div id="qrContainer">
+                <!-- QR code will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/billing.js"></script>
+</body>
+</html>

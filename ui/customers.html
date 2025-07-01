@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Billing - Customers</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>MedBill Pro</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="billing.html" class="nav-link">
+                    <span class="nav-icon">💊</span>
+                    Billing
+                </a></li>
+                <li><a href="customers.html" class="nav-link active">
+                    <span class="nav-icon">👥</span>
+                    Customers
+                </a></li>
+                <li><a href="stock.html" class="nav-link">
+                    <span class="nav-icon">📦</span>
+                    Inventory
+                </a></li>
+                <li><a href="reports.html" class="nav-link">
+                    <span class="nav-icon">📊</span>
+                    Reports
+                </a></li>
+                <li><a href="settings.html" class="nav-link">
+                    <span class="nav-icon">⚙️</span>
+                    Settings
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <h1>Customer Management</h1>
+                <button class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Search and Add Section -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="search-container">
+                            <input type="text" id="customerSearch" placeholder="Search customers..." class="search-input">
+                        </div>
+                        <button id="addCustomerBtn" class="btn btn-primary">Add Customer</button>
+                    </div>
+                </div>
+
+                <!-- Customers Table -->
+                <div class="section-card">
+                    <div class="table-container">
+                        <table id="customersTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Total Visits</th>
+                                    <th>Total Spent</th>
+                                    <th>Last Visit</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Customer Modal -->
+    <div id="customerFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Add Customer</h3>
+            <form id="customerForm">
+                <div class="form-group">
+                    <label for="customerName">Name *</label>
+                    <input type="text" id="customerName" name="name" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone *</label>
+                    <input type="tel" id="customerPhone" name="phone" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail" name="email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address</label>
+                    <textarea id="customerAddress" name="address" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="customerDOB">Date of Birth</label>
+                    <input type="date" id="customerDOB" name="dob" class="form-input">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/customers.js"></script>
+</body>
+</html>
